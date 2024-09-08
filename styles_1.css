@@ -1,0 +1,112 @@
+/* Ensure the body takes up the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('Lambo.png'); /* Replace with your background image */
+    background-size: cover; /* Ensures the image covers the whole page */
+    background-position: center; /* Centers the background image */
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    overflow: hidden; /* Ensures the animation doesn't overflow */
+}
+
+.container {
+    text-align: center;
+    position: relative; /* Enables positioning of the animated images */
+}
+
+/* Define the keyframes for the flashing effect */
+@keyframes flash {
+    0% {
+        background-color: #ffffff;
+    }
+    25% {
+        background-color: #f1c68e; /* Lighten the color to create the flash effect */
+    }
+    50% {
+        background-color: #ff9100; /* Lighten the color to create the flash effect */
+    }
+    75% {
+        background-color: #fdb960; /* Lighten the color to create the flash effect */
+    }
+    
+    100% {
+        background-color: #ffffff;
+    }
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in, transform 0.3s ease-in, box-shadow 0.3s ease-in; /* Transition for hover effects */
+    margin-top: 20px;
+    animation: buttonAppear 1s ease-in-out forwards, flash 3s infinite; /* Add initial appearance and flashing animations */
+}
+
+button:hover {
+    background-color: #b69898; /* Change background color on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Add a shadow for a subtle lift effect */
+}
+
+
+/* Animation for the first image */
+.animated-image-right {
+    position: absolute;
+    right: -300px; /* Start the image outside the view on the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-350%); /* Center the image vertically relative to its height */
+    width: 600px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    animation: moveInRight 1s ease-out forwards; /* Apply the animation */
+}
+
+@keyframes moveInRight {
+    from {
+        right: -900px; /* Start position outside of view */
+    }
+    to {
+        right: -820px; /* End position, adjust this value to determine the final position */
+    }
+}
+
+/* Animation for the second image */
+.animated-image-left {
+    position: absolute;
+    left: -820px; /* Start the image outside the view on the left */
+    top: 50%; /* Center vertically */
+    transform: translateY(-100%); /* Center the image vertically relative to its height */
+    width: 500px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    animation: moveInTop 1s ease-out forwards; /* Apply the animation */
+}
+
+@keyframes moveInTop {
+    from {
+        top: -150px; /* Start position outside of view */
+    }
+    to {
+        top: -90px; /* End position, adjust this value to determine the final position */
+    }
+}
+
+@keyframes buttonAppear {
+    from {
+        transform: scale(0.9); /* Start slightly smaller */
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        transform: scale(1); /* End at normal size */
+        opacity: 1; /* End visible */
+    }
+}
